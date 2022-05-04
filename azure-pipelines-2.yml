@@ -72,7 +72,7 @@ stages:
               azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
               azureResourceGroup: 'AKS_Group'
               kubernetesCluster: 'GuyAKS'
-              command: 'upgrade'
+              command: 'install'
               chartType: 'FilePath'
               chartPath: '$(Build.SourcesDirectory)/k8schart'
 
