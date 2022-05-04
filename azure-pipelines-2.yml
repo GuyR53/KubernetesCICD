@@ -46,16 +46,7 @@ stages:
         helmVersion: '3.8.2'
         installKubectl: true
     
-    - task: HelmDeploy@0
-      inputs:
-        command: 'package'
-        chartPath: '$(Build.SourcesDirectory)/k8schart'
-    
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(Build.SourcesDirectory)'
-        artifact: 'k8schart'
-        publishLocation: 'pipeline'
+  
 
 
 
