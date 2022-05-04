@@ -44,6 +44,14 @@ stages:
         containerRegistry: 'myACR3210'
         command: 'login'
 
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific'
+        project: '08c7dfda-da51-46d9-bdf5-b892b1caa805'
+        definition: '5'
+        buildVersionToDownload: 'latest'
+        targetPath: '$(Pipeline.Workspace)'
+
     - task: HelmDeploy@0
       inputs:
         connectionType: 'Azure Resource Manager'
