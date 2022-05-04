@@ -88,6 +88,8 @@ stages:
               kubernetesCluster: 'GuyAKS'
               useClusterAdmin: true
               command: 'install'
+              imagePullSecrets: |
+                $(imagePullSecret)
               chartType: 'FilePath'
               chartPath: '$(Build.SourcesDirectory)/k8schart'
 
