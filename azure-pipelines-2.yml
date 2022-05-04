@@ -42,31 +42,18 @@ stages:
         helmVersion: '3.8.2'
         installKubectl: true
     
-# Continuous Deployment Process 
-- stage: DeployToKubernetesCluster
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  jobs:
-  - deployment: DeployToKubernetesCluster
-    displayName: Deploy to Kubernetes
-    pool:
-      vmImage: $(vmImageName)
-    environment:
-      name: Kubernetes
-    strategy:
-      runOnce:
-        deploy:
-          steps:
 
 
-          - task: HelmDeploy@0
-            inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              command: 'install'
-              chartType: 'FilePath'
-              chartPath: '$(Build.SourcesDirectory)/k8schart'
+
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
+        azureResourceGroup: 'AKS_Group'
+        kubernetesCluster: 'GuyAKS'
+        command: 'install'
+        chartType: 'FilePath'
+        chartPath: '$(Build.SourcesDirectory)/k8schart'
           
 
 
