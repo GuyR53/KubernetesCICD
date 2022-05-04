@@ -38,10 +38,7 @@ stages:
         tags: |
           $(tag)
 
-    - task: HelmInstaller@0
-      inputs:
-        helmVersion: '3.8.2'
-        installKubectl: true
+   
     
 
 
@@ -60,7 +57,10 @@ stages:
         deploy:
           steps:
 
-
+           - task: HelmInstaller@0
+             inputs:
+                helmVersion: '3.8.2'
+                installKubectl: true
 
           - task: KubernetesManifest@0
             inputs:
