@@ -53,6 +53,7 @@ stages:
         command: 'install'
         chartType: 'FilePath'
         chartPath: '$(Build.SourcesDirectory)/k8schart'
+        waitForExecution: false
            
     
    
