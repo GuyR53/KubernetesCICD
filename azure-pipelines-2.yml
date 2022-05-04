@@ -76,8 +76,7 @@ stages:
 
           - task: HelmDeploy@0
             inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceConnection: 'KubernetesConnection'
+              connectionType: 'None'
               command: 'install'
               chartType: 'FilePath'
               chartPath: '$(Build.SourcesDirectory)/k8schart'
