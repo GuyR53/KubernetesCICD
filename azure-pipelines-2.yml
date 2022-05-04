@@ -18,12 +18,14 @@ variables:
   imagePullSecret: 'dockerapplication'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  #vmImageName: 'ubuntu-latest'
 
 
 stages:
 - stage: Build
   displayName: Build and push stage
+  pool:
+      name: Default
   jobs:
   - job: Build
     displayName: Build
@@ -76,6 +78,8 @@ stages:
   jobs:
   - deployment: staging
     displayName: Deploy to Staging
+    pool:
+      name: Default
     environment:
       name: Staging
     strategy:
