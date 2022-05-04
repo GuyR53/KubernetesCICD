@@ -89,6 +89,14 @@ stages:
               downloadType: 'single'
               artifactName: 'HelmChartArtifact'
               downloadPath: '$(Build.SourcesDirectory)'
+          
+          - task: ExtractFiles@1
+            inputs:
+              archiveFilePatterns: '**/*.zip'
+              destinationFolder: '$(Build.SourcesDirectory)'
+              cleanDestinationFolder: true
+              overwriteExistingFiles: false
+          
 
           - task: HelmDeploy@0
             inputs:
