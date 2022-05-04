@@ -42,11 +42,16 @@ stages:
         helmVersion: '3.8.2'
         installKubectl: true
     
+    
     - task: HelmDeploy@0
       inputs:
-        command: 'package'
-        chartPath: '$(Build.SourcesDirectory)/k8schart'
-    
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
+        azureResourceGroup: 'AKS_Group'
+        kubernetesCluster: 'GuyAKS'
+        command: 'install'
+        chartType: 'Name'
+        chartName: 'k8schart'
     
 
 
