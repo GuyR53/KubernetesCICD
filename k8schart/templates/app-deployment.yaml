@@ -14,8 +14,10 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: myacr3210.azurecr.io/kubernetescicd:latest
+        image: myacr3210.azurecr.io/kubernetescicd
         envFrom:
+      imagePullSecrets:
+        - name: docker-registry-secret.yaml
           - secretRef:
               name: react-app-prod
         resources:
