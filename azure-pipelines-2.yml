@@ -54,6 +54,7 @@ stages:
   jobs:
   - deployment: Kubernetes
     displayName: Deploy to Kubernetes
+    dependsOn: Build
     environment:
       name: Kubernetes
     strategy:
