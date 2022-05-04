@@ -50,8 +50,8 @@ stages:
         azureResourceGroup: 'AKS_Group'
         kubernetesCluster: 'GuyAKS'
         command: 'install'
-        chartType: 'Name'
-        chartName: 'k8schart'
+        chartType: 'FilePath'
+        chartPath: '$(Build.SourcesDirectory)/k8schart'
     
 
 
