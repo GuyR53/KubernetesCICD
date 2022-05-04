@@ -87,7 +87,7 @@ stages:
             inputs:
               buildType: 'current'
               downloadType: 'single'
-              artifactName: 'HelmChartArtifact'
+              artifactName: 'k8schart'
               downloadPath: '$(Build.SourcesDirectory)'
           
           - task: ExtractFiles@1
