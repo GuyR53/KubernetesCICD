@@ -71,25 +71,14 @@ stages:
               containerRegistry: 'myACR3210'
               command: 'login'
 
-          - task: KubernetesManifest@0
-            inputs:
-              action: 'createSecret'
-              kubernetesServiceConnection: 'KubernetesConnection'
-              secretType: 'dockerRegistry'
-              secretName: 'pullsecret'
-              dockerRegistryEndpoint: 'myACR3210'
+          
           
 
           - task: HelmDeploy@0
             inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              useClusterAdmin: true
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceConnection: 'KubernetesConnection'
               command: 'install'
-              imagePullSecrets: |
-                $(imagePullSecret)
               chartType: 'FilePath'
               chartPath: '$(Build.SourcesDirectory)/k8schart'
 
