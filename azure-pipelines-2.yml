@@ -15,6 +15,7 @@ variables:
   containerRegistry: 'myacr3210.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
+  imagePullSecret: 'dockerapplication'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -77,6 +78,15 @@ stages:
             inputs:
                 helmVersion: '3.8.2'
                 installKubectl: true
+              
+
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+
 
           - task: KubernetesManifest@0
             inputs:
