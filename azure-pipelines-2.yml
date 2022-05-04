@@ -52,7 +52,7 @@ stages:
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Build.SourcesDirectory)'
-        artifact: 'HelmChartArtifact'
+        artifact: 'k8schart'
         publishLocation: 'pipeline'
 
 
