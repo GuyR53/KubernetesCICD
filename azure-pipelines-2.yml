@@ -28,6 +28,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
@@ -37,35 +38,48 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
     - task: HelmInstaller@0
       inputs:
         helmVersion: '3.8.2'
         installKubectl: true
     
 
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'myACR3210'
-        command: 'login'
-
-    - task: KubernetesManifest@0
-      inputs:
-        action: 'createSecret'
-        kubernetesServiceConnection: 'KubernetesConnection'
-        secretType: 'dockerRegistry'
-        secretName: 'react-app-prod'
-        dockerRegistryEndpoint: 'myACR3210'
 
 
-    - task: HelmDeploy@0
-      inputs:
-        connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-        azureResourceGroup: 'AKS_Group'
-        kubernetesCluster: 'GuyAKS'
-        command: 'install'
-        chartType: 'FilePath'
-        chartPath: '$(Build.SourcesDirectory)/k8schart'
+
+
+# Continuous Deployment Process To Kubernetes
+- stage: DeployToKubernetesCluster
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: Kubernetes
+    displayName: Deploy to Kubernetes
+    environment:
+      name: Kubernetes
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: KubernetesManifest@0
+            inputs:
+              action: 'createSecret'
+              kubernetesServiceConnection: 'KubernetesConnection'
+              secretType: 'dockerRegistry'
+              secretName: 'react-app-prod'
+              dockerRegistryEndpoint: 'myACR3210'
+
+
+          - task: HelmDeploy@0
+            inputs:
+              connectionType: 'Azure Resource Manager'
+              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
+              azureResourceGroup: 'AKS_Group'
+              kubernetesCluster: 'GuyAKS'
+              command: 'install'
+              chartType: 'FilePath'
+              chartPath: '$(Build.SourcesDirectory)/k8schart'
           
 
 
