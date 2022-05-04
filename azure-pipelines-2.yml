@@ -76,7 +76,7 @@ stages:
               action: 'createSecret'
               kubernetesServiceConnection: 'KubernetesConnection'
               secretType: 'dockerRegistry'
-              secretName: 'PullSecret'
+              secretName: 'pullsecret'
               dockerRegistryEndpoint: 'myACR3210'
           
 
