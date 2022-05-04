@@ -55,8 +55,5 @@ stages:
         deploy:
           steps:
           
-          - task: Docker@2
-            inputs:
-              containerRegistry: 'myACR3210'
-              command: 'login'
+        
           
