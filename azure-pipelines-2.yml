@@ -55,8 +55,6 @@ stages:
   jobs:
   - deployment: Kubernetes
     displayName: Deploy to Kubernetes
-    environment:
-      name: Kubernetes
     strategy:
       runOnce:
         deploy:
