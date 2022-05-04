@@ -57,17 +57,6 @@ stages:
         deploy:
           steps:
 
-          - task: Docker@2
-            inputs:
-              containerRegistry: 'myACR3210'
-              command: 'login'
-
-          - task: CmdLine@2
-            inputs:
-              script: 'git clone https://guyroyburttt@dev.azure.com/guyroyburttt/BootcampProjects/_git/KubernetesCICD'
-          - task: CmdLine@2
-            inputs:
-              script: 'helm install kubernetes k8schart'
 
           - task: HelmDeploy@0
             inputs:
