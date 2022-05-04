@@ -49,7 +49,17 @@ stages:
 
 # Continuous Deployment Process To Kubernetes
 - stage: DeployToKubernetesCluster
-  dependsOn: Build
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: staging
+    displayName: Deploy to Staging
+    environment:
+      name: Staging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
 
 
           - task: KubernetesManifest@0
