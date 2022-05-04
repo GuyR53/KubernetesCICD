@@ -93,7 +93,7 @@ stages:
           - task: ExtractFiles@1
             inputs:
               archiveFilePatterns: '**/*.zip'
-              destinationFolder: '$(Build.SourcesDirectory)'
+              destinationFolder: '$(Build.SourcesDirectory)/k8schart'
               cleanDestinationFolder: true
               overwriteExistingFiles: false
           
