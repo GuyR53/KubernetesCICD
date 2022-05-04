@@ -40,20 +40,7 @@ stages:
 
 
 
-# Continuous Deployment Process 
-- stage: DeployToKubernetesCluster
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  jobs:
-  - deployment: staging
-    displayName: Deploy to Staging
-    pool:
-      vmImage: $(vmImageName)
-    environment:
-      name: Staging
-    strategy:
-      runOnce:
-        deploy:
-          steps:
+
           
         
           
