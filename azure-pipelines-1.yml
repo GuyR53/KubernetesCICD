@@ -37,3 +37,28 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
+
+
+# Continuous Deployment Process 
+- stage: DeployToKubernetesCluster
+  variables:
+  - group: envStage
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: staging
+    displayName: Deploy to Staging
+    pool:
+      name: StagingPool
+    environment:
+      name: Staging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'myACR3210'
+              command: 'login'
+          
