@@ -48,7 +48,13 @@ stages:
         containerRegistry: 'myACR3210'
         command: 'login'
 
-
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'createSecret'
+        kubernetesServiceConnection: 'KubernetesConnection'
+        secretType: 'dockerRegistry'
+        secretName: 'react-app-prod'
+        dockerRegistryEndpoint: 'myACR3210'
 
 
     - task: HelmDeploy@0
