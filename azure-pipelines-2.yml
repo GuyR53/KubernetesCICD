@@ -50,7 +50,6 @@ stages:
 # Continuous Deployment Process To Kubernetes
 - stage: DeployToKubernetesCluster
   dependsOn: Build
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 
 
           - task: KubernetesManifest@0
