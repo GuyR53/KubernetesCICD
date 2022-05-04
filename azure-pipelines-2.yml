@@ -18,6 +18,9 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  # Pool Image
+  pool:
+  vmImage: $(vmImageName)
 
 stages:
 - stage: Build
@@ -25,8 +28,6 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: $(vmImageName)
     steps:
 
     - task: Docker@2
@@ -55,8 +56,6 @@ stages:
   jobs:
   - deployment: Kubernetes
     displayName: Deploy to Kubernetes
-    pool:
-      vmImage: $(vmImageName)
     environment:
       name: Kubernetes
     strategy:
