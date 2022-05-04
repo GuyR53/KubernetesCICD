@@ -45,7 +45,8 @@ stages:
     
 
 
-
+ displayName: Deploy stage
+  dependsOn: Build
 
 
 # Continuous Deployment Process To Kubernetes
@@ -53,7 +54,6 @@ stages:
   dependsOn: Build
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
-  - deployment: Kubernetes
     displayName: Deploy to Kubernetes
     strategy:
       runOnce:
