@@ -45,8 +45,6 @@ stages:
     
 
 
- displayName: Deploy stage
-  dependsOn: Build
 
 
 # Continuous Deployment Process To Kubernetes
