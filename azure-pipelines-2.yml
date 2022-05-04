@@ -57,8 +57,8 @@ stages:
         deploy:
           steps:
 
-           - task: HelmInstaller@0
-             inputs:
+          - task: HelmInstaller@0
+            inputs:
                 helmVersion: '3.8.2'
                 installKubectl: true
 
