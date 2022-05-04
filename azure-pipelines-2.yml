@@ -39,29 +39,29 @@ stages:
         tags: |
           $(tag)
     
-    - task: Docker@2
+    - task: HelmInstaller@0
       inputs:
-        containerRegistry: 'myACR3210'
-        command: 'login'
-
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        buildType: 'specific'
-        project: '08c7dfda-da51-46d9-bdf5-b892b1caa805'
-        definition: '5'
-        buildVersionToDownload: 'latest'
-        targetPath: '$(Pipeline.Workspace)'
-
+        helmVersion: '3.8.2'
+        installKubectl: true
+    
     - task: HelmDeploy@0
       inputs:
-        connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-        azureResourceGroup: 'AKS_Group'
-        kubernetesCluster: 'GuyAKS'
-        command: 'install'
-        chartType: 'FilePath'
+        command: 'package'
         chartPath: '$(Build.SourcesDirectory)/k8schart'
-        waitForExecution: false
+    
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Build.SourcesDirectory)'
+        artifact: 'HelmChartArtifact'
+        publishLocation: 'pipeline'
+
+
+
+
+
+    
+
+    
            
     
    
