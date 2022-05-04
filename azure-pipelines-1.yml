@@ -42,8 +42,6 @@ stages:
 
 # Continuous Deployment Process 
 - stage: DeployToKubernetesCluster
-  variables:
-  - group: envStage
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: staging
