@@ -46,12 +46,12 @@ stages:
 - stage: DeployToKubernetesCluster
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
-  - deployment: staging
-    displayName: Deploy to Staging
+  - deployment: DeployToKubernetesCluster
+    displayName: Deploy to Kubernetes
     pool:
       vmImage: $(vmImageName)
     environment:
-      name: Staging
+      name: Kubernetes
     strategy:
       runOnce:
         deploy:
