@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: nodejs-app
+        image: shirf/bootcamp_app:v2
         #image: myacr3210.azurecr.io/kubernetescicd:latest
-         image: shirf/bootcamp_app:v2
         envFrom:
           - secretRef:
               name: react-app-prod
