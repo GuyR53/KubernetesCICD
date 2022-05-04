@@ -51,12 +51,7 @@ stages:
 - stage: DeployToKubernetesCluster
   dependsOn: Build
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  jobs:
-    displayName: Deploy to Kubernetes
-    strategy:
-      runOnce:
-        deploy:
-          steps:
+
 
           - task: KubernetesManifest@0
             inputs:
