@@ -79,7 +79,10 @@ stages:
               azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
               azureResourceGroup: 'AKS_Group'
               kubernetesCluster: 'GuyAKS'
+              namespace: 'default'
               command: 'upgrade'
               chartType: 'FilePath'
               chartPath: '$(Pipeline.Workspace)/k8schart'
+              releaseName: 'kubernetes'
               overrideValues: '{{ values.image.tag }}=$(Build.BuildId)'
+
