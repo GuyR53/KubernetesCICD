@@ -71,6 +71,7 @@ stages:
               command: 'login'
           
 
+          
           - task: HelmDeploy@0
             inputs:
               connectionType: 'Azure Resource Manager'
@@ -78,6 +79,6 @@ stages:
               azureResourceGroup: 'AKS_Group'
               kubernetesCluster: 'GuyAKS'
               command: 'upgrade'
-              chartType: 'Name'
-              chartName: 'kubernetes'
-              overrideValues: 'tag=$(Build.BuildId)'
+              chartType: 'FilePath'
+              chartPath: '$(Pipeline.Workspace)/k8schart'
+              valueFile: 'tag=$(Build.BuildId)'
