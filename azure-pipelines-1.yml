@@ -71,7 +71,17 @@ stages:
               command: 'login'
           
 
-          
+          - task: HelmDeploy@0
+            inputs:
+              connectionType: 'Azure Resource Manager'
+              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
+              azureResourceGroup: 'AKS_Group'
+              kubernetesCluster: 'GuyAKS'
+              command: 'upgrade'
+              chartType: 'Name'
+              chartName: 'kubernetes'
+              releaseName: 'kubernetes'
+              overrideValues: '''{{ values.image.tag }}=$(Build.BuildId)'
 
           - task: HelmDeploy@0
             inputs:
