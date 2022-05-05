@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: myACR3211111.azurecr.io/kubernetescicd
+        image: myACR3211111.azurecr.io/kubernetescicd:az acr repository show-tags --name myACR3211111 --repository kubernetescicd --orderby time_desc --top 1
         envFrom:
           - secretRef:
               name: react-app-prod
