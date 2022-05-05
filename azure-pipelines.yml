@@ -78,7 +78,7 @@ stages:
               kubernetesCluster: 'GuyAKS'
               command: 'install'
               chartType: 'FilePath'
-              chartPath: '/home/guyr/myagent/_work/1/s/k8schart'
+              chartPath: '$(Pipeline.Workspace)/k8schart'
 
           
           
