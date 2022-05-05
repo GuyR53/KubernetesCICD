@@ -39,7 +39,7 @@ stages:
           $(tag)
 
     - task: HelmInstaller@0
-          inputs:
+      inputs:
             helmVersion: '3.8.2'
             installKubectl: true
     
