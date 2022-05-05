@@ -73,7 +73,7 @@ stages:
 
           - task: CmdLine@2
             inputs:
-              script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart --namespace default --install --set {{ values.image.tag }}=169 -'
+              script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart'
 
           - task: HelmDeploy@0
             inputs:
