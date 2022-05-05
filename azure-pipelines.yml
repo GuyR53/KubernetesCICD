@@ -57,7 +57,7 @@ stages:
   - deployment: staging
     displayName: Deploy to Staging
     pool:
-      name: Default
+      vmImage: $(vmImageName)
     environment:
       name: Staging
     strategy:
