@@ -72,6 +72,7 @@ stages:
           
 
           
+
           - task: HelmDeploy@0
             inputs:
               connectionType: 'Azure Resource Manager'
@@ -81,4 +82,4 @@ stages:
               command: 'upgrade'
               chartType: 'FilePath'
               chartPath: '$(Pipeline.Workspace)/k8schart'
-              valueFile: 'tag=$(Build.BuildId)'
+              overrideValues: 'tag=$(Build.BuildId)'
