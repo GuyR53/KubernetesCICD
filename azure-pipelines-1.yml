@@ -71,6 +71,10 @@ stages:
               command: 'login'
           
 
+          - task: CmdLine@2
+            inputs:
+              script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart --namespace default --install --set {{ values.image.tag }}=169 -'
+
           - task: HelmDeploy@0
             inputs:
               connectionType: 'Azure Resource Manager'
@@ -83,16 +87,5 @@ stages:
               releaseName: 'kubernetes'
               overrideValues: '''{{ values.image.tag }}=$(Build.BuildId)'
 
-          - task: HelmDeploy@0
-            inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              namespace: 'default'
-              command: 'upgrade'
-              chartType: 'FilePath'
-              chartPath: '$(Pipeline.Workspace)/k8schart'
-              releaseName: 'kubernetes'
-              overrideValues: '{{ values.image.tag }}=$(Build.BuildId)'
+          
 
