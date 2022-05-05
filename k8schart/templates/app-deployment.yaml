@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: myacr3210.azurecr.io/kubernetescicd
+        image: myACR3211111.azurecr.io/kubernetescicd
         envFrom:
           - secretRef:
               name: react-app-prod
@@ -25,4 +25,4 @@ spec:
         ports:
         - containerPort: 80
       imagePullSecrets:
-        - name: acr-secret   
+        - name: regcred   
