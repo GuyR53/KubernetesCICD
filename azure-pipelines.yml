@@ -76,7 +76,7 @@ stages:
               kubernetesCluster: 'GuyAKS'
               command: 'install'
               chartType: 'FilePath'
-              chartPath: '$(Build.SourcesDirectory)/k8schart'
+              chartPath: '/home/guyr/myagent/_work/1/s/k8schart'
 
           
           
