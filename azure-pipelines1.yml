@@ -37,10 +37,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - task: HelmInstaller@0
-      inputs:
-                helmVersion: '3.8.2'
-                installKubectl: true
+   # - task: HelmInstaller@0
+   #   inputs:
+   #             helmVersion: '3.8.2'
+   #             installKubectl: true
         
     - upload: k8schart
       artifact: k8schart
