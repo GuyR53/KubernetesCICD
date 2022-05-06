@@ -83,7 +83,17 @@ stages:
            # inputs:
            #   script: /usr/local/bin/helm upgrade kubernetes /home/vsts/work/1/k8schart --set image.tag=211 
 
-          
+          - task: HelmDeploy@0
+            inputs:
+              connectionType: 'Azure Resource Manager'
+              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
+              azureResourceGroup: 'AKS_Group'
+              kubernetesCluster: 'GuyAKS'
+              command: 'upgrade'
+              chartType: 'Name'
+              chartName: 'k8schart'
+              overrideValues: 'image.tag=$(Build.BuildId)'
+              
           - task: HelmDeploy@0
             inputs:
               connectionType: 'Azure Resource Manager'
