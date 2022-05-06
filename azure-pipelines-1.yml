@@ -75,5 +75,5 @@ stages:
 
           - task: CmdLine@2
             inputs:
-              script: helm upgrade kubernetes k8schart  --set image.tag=211 
+              script: helm upgrade kubernetes k8schart  --set image.tag=$(Build.BuildId) 
 
