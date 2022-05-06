@@ -43,16 +43,16 @@ stages:
       artifact: k8schart
   
 
-# Continuous Deployment Process To Kubernetes
+# Continuous Deployment Process To Kubernetes Cluster
 - stage: DeployToKubernetesCluster
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
-  - deployment: staging
-    displayName: Deploy to Staging
+  - deployment: kubernetes
+    displayName: Deploy to Kubernetes
     pool:
       name: Default
-    environment:
-      name: Staging
+    #environment:
+     # name: Kubernetes
     strategy:
       runOnce:
         deploy:
