@@ -74,5 +74,5 @@ stages:
 
           - task: CmdLine@2
             inputs:
-              script: helm upgrade kubernetes k8schart  --set image.tag=$(Build.BuildId) 
+              script: helm upgrade  kubernetes k8schart --atomic --timeout 20 --set image.tag=$(Build.BuildId) 
 
