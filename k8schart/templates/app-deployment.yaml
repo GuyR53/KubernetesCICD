@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
+        {{- if not empty .values.image.tag }}
         image: myACR3211111.azurecr.io/kubernetescicd:{{ values.image.tag }}
         envFrom:
           - secretRef:
