@@ -18,7 +18,7 @@ spec:
         envFrom:
           - secretRef:
               name: react-app-prod
-         resources:
+        resources:
           limits:
             memory: "128Mi"
             cpu: "100m"
