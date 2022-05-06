@@ -90,8 +90,8 @@ stages:
               azureResourceGroup: 'AKS_Group'
               kubernetesCluster: 'GuyAKS'
               command: 'upgrade'
-              chartType: 'Name'
-              chartName: 'k8schart'
+              chartType: 'FilePath'
+              chartPath: '$(Pipeline.Workspace)/k8schart'
               releaseName: 'kubernetes'
               overrideValues: 'image.tag=$(Build.BuildId)'
               
