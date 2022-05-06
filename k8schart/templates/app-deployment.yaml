@@ -18,12 +18,12 @@ spec:
         envFrom:
           - secretRef:
               name: react-app-prod
-        resources:
+         resources:
           limits:
             memory: "128Mi"
-            cpu: "1000m"
+            cpu: "100m"
           requests:
-            cpu: "1000m"
+            cpu: "100m"
             memory: "128Mi"
         ports:
         - containerPort: 80
