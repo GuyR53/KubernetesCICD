@@ -64,10 +64,10 @@ stages:
         deploy:
           steps:
 
-          - task: Docker@2
-            inputs:
-              containerRegistry: 'myACR3211111'
-              command: 'login'
+          #- task: Docker@2
+            #inputs:
+            #  containerRegistry: 'myACR3211111'
+            #  command: 'login'
           
 
        
