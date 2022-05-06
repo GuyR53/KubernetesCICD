@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: postgres
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: postgres
@@ -19,9 +19,9 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "600m"
+            cpu: "500m"
           requests:
-            cpu: "600m"
+            cpu: "500m"
             memory: "128Mi"
         ports:
         - containerPort: 5432
