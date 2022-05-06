@@ -73,7 +73,7 @@ stages:
 
           - task: CmdLine@2
             inputs:
-              script: /usr/local/bin/helm upgrade --wait kubernetes /home/vsts/work/1/k8s --set {{ values.image.tag }}=211 
+              script: /usr/local/bin/helm upgrade kubernetes /home/vsts/work/1/k8schart --set image.tag=211 
 
           
           - task: HelmDeploy@0
