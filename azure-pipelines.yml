@@ -37,3 +37,55 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
+    - task: HelmInstaller@0
+      inputs:
+            helmVersion: '3.8.2'
+            installKubectl: true
+    
+    - upload: k8schart
+      artifact: k8schart
+  
+
+
+
+
+# Continuous Deployment Process To Kubernetes
+- stage: DeployToKubernetesCluster
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: staging
+    displayName: Deploy to Staging
+    pool:
+      vmImage: $(vmImageName)
+    environment:
+      name: Staging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'myACR3211111'
+              command: 'login'
+          
+
+          - task: CmdLine@2
+            inputs:
+              script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart'
+
+          - task: HelmDeploy@0
+            inputs:
+              connectionType: 'Azure Resource Manager'
+              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
+              azureResourceGroup: 'AKS_Group'
+              kubernetesCluster: 'GuyAKS'
+              command: 'upgrade'
+              chartType: 'Name'
+              chartName: 'kubernetes'
+              releaseName: 'kubernetes'
+              overrideValues: '''{{ values.image.tag }}=$(Build.BuildId)'
+
+          
+
