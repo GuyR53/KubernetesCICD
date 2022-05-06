@@ -71,9 +71,9 @@ stages:
               command: 'login'
           
 
-          - task: CmdLine@2
-            inputs:
-              script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart'
+          #- task: CmdLine@2
+          #  inputs:
+          #    script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart'
 
           
 
