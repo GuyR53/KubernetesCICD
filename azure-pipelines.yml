@@ -83,38 +83,4 @@ stages:
             inputs:
               script: helm upgrade kubernetes k8schart  --set image.tag=211 
 
-          - task: HelmDeploy@0
-            inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              command: 'upgrade'
-              chartType: 'FilePath'
-              chartPath: '$(Pipeline.Workspace)/k8schart'
-              releaseName: 'kubernetes'
-              overrideValues: 'image.tag=$(Build.BuildId)'
-              
-          - task: HelmDeploy@0
-            inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              command: 'upgrade'
-              chartType: 'FilePath'
-              chartPath: '$(Pipeline.Workspace)/k8schart'
-              overrideValues: 'image.tag=$(Build.BuildId)'
-
-          - task: HelmDeploy@0
-            inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscription: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              command: 'upgrade'
-              chartType: 'FilePath'
-              chartPath: '$(Pipeline.Workspace)/k8schart'
-              releaseName: 'kubernetes'
-              overrideValues: '{{ values.image.tag }}=$(Build.BuildId)'
 
