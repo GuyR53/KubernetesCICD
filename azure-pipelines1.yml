@@ -51,8 +51,8 @@ stages:
     displayName: Deploy to Kubernetes
     pool:
       name: Default
-    #environment:
-     # name: Kubernetes
+    environment:
+      name: Kubernetes
     strategy:
       runOnce:
         deploy:
