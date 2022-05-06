@@ -71,9 +71,9 @@ stages:
               command: 'login'
           
 
-          #- task: CmdLine@2
-          #  inputs:
-          #    script: 'helm upgrade kubernetes /home/vsts/work/1/k8schart'
+          - task: CmdLine@2
+            inputs:
+              script: '/usr/local/bin/helm upgrade --install --set {{ values.image.tag }}=211 --wait kubernetes /home/vsts/work/1/k8schart'
 
           
           - task: HelmDeploy@0
