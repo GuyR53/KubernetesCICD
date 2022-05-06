@@ -37,3 +37,42 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: HelmInstaller@0
+      inputs:
+            helmVersion: '3.8.2'
+            installKubectl: true
+    
+    - upload: k8schart
+      artifact: k8schart
+  
+
+
+
+
+# Continuous Deployment Process To Kubernetes
+- stage: DeployToKubernetesCluster
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: staging
+    displayName: Deploy to Staging
+    pool:
+      vmImage: $(vmImageName)
+    environment:
+      name: Staging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'myACR3211111'
+              command: 'login'
+          
+
+       
+
+          - task: CmdLine@2
+            inputs:
+              script: helm upgrade kubernetes k8schart  --set image.tag=211 
+
