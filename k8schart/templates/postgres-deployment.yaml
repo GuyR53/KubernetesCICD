@@ -16,10 +16,13 @@ spec:
       - name: postgres
         image: postgres:10.4
         imagePullPolicy: "IfNotPresent"
-        resources:
+       resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "600m"
+          requests:
+            cpu: "600m"
+            memory: "128Mi"
         ports:
         - containerPort: 5432
         envFrom:
