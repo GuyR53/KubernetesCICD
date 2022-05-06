@@ -71,13 +71,7 @@ stages:
               command: 'login'
           
 
-          - task: Kubernetes@1
-            inputs:
-              connectionType: 'Azure Resource Manager'
-              azureSubscriptionEndpoint: 'Azure Pass - Sponsorship(ecc36c1d-699d-4305-abf3-52e1d36dfe24)'
-              azureResourceGroup: 'AKS_Group'
-              kubernetesCluster: 'GuyAKS'
-              command: 'login'
+       
 
           - task: CmdLine@2
             inputs:
