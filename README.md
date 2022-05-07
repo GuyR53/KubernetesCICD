@@ -11,12 +11,21 @@
 9. Helm: Package the kubernetes manifests using helm and use it to deploy your application in your CI/CD pipeline.
 10. Terraform: Manage your Azure resources using Infrastructure as Code.
 
-
+# Kubernetes Cluster in Microsoft’s Azure Kubernetes Service (AKS)
 <img width="814" alt="Screen Shot 2022-05-07 at 12 03 05" src="https://user-images.githubusercontent.com/93793111/167247370-c3467a9a-f8ca-44c4-b4ba-27d68a16f874.png">
+
+# Kubernetes Resource
 
 <img width="1040" alt="Screen Shot 2022-05-07 at 12 00 43" src="https://user-images.githubusercontent.com/93793111/167247376-011bac4f-3cbb-4af5-823b-1b8a55d19769.png">
 
+# The project's CI/CD
+
 <img width="615" alt="Screen Shot 2022-05-07 at 12 01 05" src="https://user-images.githubusercontent.com/93793111/167247378-e0530b92-1594-42e1-9254-6961e99b2944.png">=
+
+# Expected Result
+
+* An AKS cluster with the NodeWeightTracker is deployed following the requirements listed above.
+* Your application lifecycle is automated with a CI/CD process.
 
 # Node.js Weight Tracker
 
