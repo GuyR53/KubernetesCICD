@@ -37,3 +37,25 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - upload: k8schart
+          artifact: k8schart
+
+# Continuous Deployment Process To Kubernetes Cluster
+- stage: DeployToKubernetesCluster
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: kubernetes
+    displayName: Deploy to Kubernetes
+    pool:
+      name: Default
+    environment:
+      name: Kubernetes
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+                 
+          - task: CmdLine@2
+            inputs:
+              script: helm upgrade  kubernetes k8schart --atomic --set image.tag=$(Build.BuildId)
+
