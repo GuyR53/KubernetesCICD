@@ -24,3 +24,7 @@ variable "acr_name" {
   type        = string
   description = "ACR name"
 }
+variable "admin_password" {
+  default = "dsad"
+  
+}
