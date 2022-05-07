@@ -38,7 +38,7 @@ stages:
         tags: |
           $(tag)
     - upload: k8schart
-          artifact: k8schart
+      artifact: k8schart
 
 # Continuous Deployment Process To Kubernetes Cluster
 - stage: DeployToKubernetesCluster
